@@ -115,7 +115,7 @@ uint8_t `$INSTANCE_NAME`_CheckEndOfBattery(void);
 
 // Helper functions 
 float `$INSTANCE_NAME`_CalcTemp(uint16_t rawData);
-float `$INSTANCE_NAME`_CalcHum(uint16_t rawData, float temp);
+float `$INSTANCE_NAME`_CalcHumi(uint16_t rawData, float temp);
 float `$INSTANCE_NAME`_CalcDewpoint(float humi, float temp);
     
 #endif

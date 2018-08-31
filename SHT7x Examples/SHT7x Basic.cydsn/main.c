@@ -57,7 +57,7 @@ int main(void)
             else {
                 measurementStarted = 0;
                 SHT7x_1_GetResult(&rawData);
-                humidity = SHT7x_1_CalcHum(rawData, temperature);
+                humidity = SHT7x_1_CalcHumi(rawData, temperature);
                 dewpoint = SHT7x_1_CalcDewpoint(humidity, temperature);
                 logData(temperature*1000, humidity*1000, dewpoint*1000);
                 CyDelay(1000);

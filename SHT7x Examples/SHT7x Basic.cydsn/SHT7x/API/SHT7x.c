@@ -22,7 +22,7 @@
 
 // Delay times
 #define `$INSTANCE_NAME`_PULSE_SHORT CyDelayUs(1)
-#define `$INSTANCE_NAME`_PULSE_LONG CyDelayUs(3)
+#define `$INSTANCE_NAME`_PULSE_LONG  CyDelayUs(3)
 
 // Sensirion command definitions:           adr command r/w
 #define `$INSTANCE_NAME`_MEAS_TEMP   0x03    // 000  0001    1
@@ -33,7 +33,7 @@
 
 // Useful macros
 #define `$INSTANCE_NAME`_MeasTemp(result)  `$INSTANCE_NAME`_Meas(`$INSTANCE_NAME`_READ_TEMP, result, `$INSTANCE_NAME`_BLOCK)
-#define `$INSTANCE_NAME`_MeasHum(result)   `$INSTANCE_NAME`_Meas(`$INSTANCE_NAME`_READ_HUMI, result, `$INSTANCE_NAME`_BLOCK)
+#define `$INSTANCE_NAME`_MeasHumi(result)  `$INSTANCE_NAME`_Meas(`$INSTANCE_NAME`_READ_HUMI, result, `$INSTANCE_NAME`_BLOCK)
 
 // Acknowledgment flags
 #define `$INSTANCE_NAME`_NoAck 0
@@ -147,10 +147,10 @@ uint8_t `$INSTANCE_NAME`_Measure(float *temp, float *humi, float *dew) {
     return error;
   }
   *temp = `$INSTANCE_NAME`_CalcTemp(rawData);
-  error = `$INSTANCE_NAME`_MeasHum(&rawData);
+  error = `$INSTANCE_NAME`_MeasHumi(&rawData);
   if (error)
     return error;
-  *humi = `$INSTANCE_NAME`_CalcHum(rawData, *temp);
+  *humi = `$INSTANCE_NAME`_CalcHumi(rawData, *temp);
   *dew  = `$INSTANCE_NAME`_CalcDewpoint(*humi, *temp);
   return 0 ;
 }
@@ -190,11 +190,11 @@ uint8_t  `$INSTANCE_NAME`_MeasureTemp(float *temp) {
 uint8_t `$INSTANCE_NAME`_MeasureHumi(float *humi, float temp) {
     uint16_t rawData;
     uint8_t error;
-    error =  `$INSTANCE_NAME`_MeasHum(&rawData);
+    error =  `$INSTANCE_NAME`_MeasHumi(&rawData);
     if (error) {
         return error;
     } 
-    *humi =  `$INSTANCE_NAME`_CalcHum(rawData, temp);
+    *humi =  `$INSTANCE_NAME`_CalcHumi(rawData, temp);
     return 0;
 }
 
@@ -593,7 +593,7 @@ float `$INSTANCE_NAME`_CalcTemp(uint16_t rawData) {
 * @param temp      value of temperature
 * @return relative humidity (%)
 */
-float `$INSTANCE_NAME`_CalcHum(uint16_t rawData, float temp) {
+float `$INSTANCE_NAME`_CalcHumi(uint16_t rawData, float temp) {
     float humi;
     // Check resolution
     if (`$INSTANCE_NAME`_StatusReg & `$INSTANCE_NAME`_LOW_RES) {
