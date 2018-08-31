@@ -48,3 +48,12 @@ float temperature, humidity, dewpoint;
 SHT7x_Start();
 SHT7x_Measure(&temperature, &humidity, &dewpoint);
 ```
+
+### Requirements
+This custom component requires the use of the `math` library. In the header file of the custom component this library is already included, but if you do not follow the procedure reported [here](https://community.cypress.com/docs/DOC-12152), you would get the following error
+
+```
+Build error: undefined reference to `log'
+```
+
+This is due to the fact that the dewpoint computation requires the use of a logarithmic function.
