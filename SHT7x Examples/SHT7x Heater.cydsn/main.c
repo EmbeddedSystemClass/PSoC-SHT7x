@@ -1,13 +1,11 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
+ * This project contains an example for the
+ * usage of the on chip heater of the 
+ * SHT7x custom component.
  *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+ * @author Davide Marzorati
+ * 
 */
 #include "project.h"
 #include "stdio.h"
